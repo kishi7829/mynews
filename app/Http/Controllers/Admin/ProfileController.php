@@ -17,7 +17,7 @@ class ProfileController extends Controller
     
     public function edit(Request $request)
     {
-        $profile = Profiles::find($request->id);
+        $profile = Profile::find($request->id);
       if (empty($profile)) {
         abort(404);    
       }
@@ -28,28 +28,27 @@ class ProfileController extends Controller
     {
       // 以下を追記
       // Varidationを行う
-      $this->validate($request , Profiles::$rules);
+      $this->validate($request , Profile::$rules);
       
-      $profile = new Profiles;
+      $profile = new Profile;
       $form = $request->all();
       
       // フォームから送信されてきた_tokenを削除する
       unset($form['_token']);
-      // フォームから送信されてきたimageを削除する
-      unset($form['image']);
       
       // データベースに保存する
       $profile->fill($form);
       $profile->save();
+        
         return redirect('admin/profile/create');
     }
     
     public function update(Request $request)
     {
       // Validationをかける
-      $this->validate($request, Profiles::$rules);
+      $this->validate($request, Profile::$rules);
       // News Modelからデータを取得する
-      $profile = Profiles::find($request->id);
+      $profile = Profile::find($request->id);
       // 送信されてきたフォームデータを格納する
       $profile_form = $request->all();
       if (isset($profile_form['image'])) {
@@ -71,7 +70,7 @@ class ProfileController extends Controller
     public function delete(Request $request)
   {
       // 該当するNews Modelを取得
-      $profile = Profiles::find($request->id);
+      $profile = Profile::find($request->id);
       // 削除する
       $profile->delete();
       return redirect('admin/profile/');
