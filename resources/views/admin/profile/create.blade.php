@@ -41,6 +41,9 @@
                     {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="送信">
                 </form>
+                <div>
+                    <a class="btn btn-primary" href="{{ action('Admin\ProfileController@index') }}">戻る</a>
+                </div>
             </div>
         </div>
     </div>
