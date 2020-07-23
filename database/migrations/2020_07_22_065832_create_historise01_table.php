@@ -12,11 +12,12 @@ class CreateHistorise01Table extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('historise01', function (Blueprint $table) {
+    {                // ↓ここは複数形じゃないとだめ
+        Schema::create('history01s', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('profile_id');
             $table->string('edited_at');
+            
             $table->timestamps();
         });
     }
@@ -27,7 +28,7 @@ class CreateHistorise01Table extends Migration
      * @return void
      */
     public function down()
-    {
-        Schema::dropIfExists('historise01');
+    {                      // ↓ここは複数形じゃないとだめ
+        Schema::dropIfExists('history01s');
     }
 }

@@ -43,7 +43,7 @@
                         <div class="col-md-10">
                             <input type="hidden" name="id" value="{{ $profile_form->id }}">
                             {{ csrf_field() }}
-                            <input type="submit" class="btn btn-primary" value="更新">
+                            <input type="submit" onclick="history.back()" class="btn btn-primary" value="更新">
                         </div>
                         <div>
                             <a class="btn btn-primary" href="{{ action('Admin\ProfileController@index') }}">戻る</a>
@@ -54,8 +54,8 @@
                     <div class="col-md-4 mx-auto">
                         <h2>編集履歴</h2>
                         <ul class="list-group">
-                            @if ($profile_form->histories01 != NULL)
-                                @foreach ($profile_form->histories01 as $history)
+                            @if ($profile_form->histories != NULL)
+                                @foreach ($profile_form->histories as $history)
                                     <li class="list-group-item">{{ $history->edited_at }}</li>
                                 @endforeach
                             @endif
